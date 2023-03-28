@@ -18,6 +18,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:host": "set \"REACT_APP_NEW_WINDOW_REF=http://localhost:3000/?ttt=true\" && react-scripts start",
+    "start:windowed": "set \"REACT_APP_NEW_WINDOW_REF=\" && set \"PORT=4444\" && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

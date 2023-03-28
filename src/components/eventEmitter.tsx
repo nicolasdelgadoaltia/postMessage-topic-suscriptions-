@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import usePubSub from "../libs/common-lib/hooks/usePubSub";
+import React, { useCallback, useState } from 'react';
+import usePubSub from '../libs/common-lib/hooks/usePubSub';
 
 interface Props {
   actionToSend: string;
@@ -9,16 +9,14 @@ interface Props {
 const EventEmitter = ({ actionToSend, topics }: Props) => {
   const [messages, setMessages] = useState<string[]>([]);
   const [counter, setCounter] = useState(1);
-  console.log("RENDER EVENT EMITER", messages, counter);
   const { publish } = usePubSub({
     topicSubscriptions: topics.map((topic: string) => ({
       topic,
       callback: (args: any) => {
-        console.log("LLEGA", args);
         const { message } = args;
         setMessages((state) => [...state, message]);
-      }
-    }))
+      },
+    })),
   });
 
   const sendNewMessage = useCallback(() => {

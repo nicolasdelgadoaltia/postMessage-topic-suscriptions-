@@ -1,9 +1,9 @@
-import { useCallback, useRef, useState } from "react";
-import EventEmitter from "./components/eventEmitter";
-import PubSubToPostConnector from "./components/connectors/pubSubToPostConnector";
-import "./styles.css";
+import { useCallback, useRef, useState } from 'react';
+import EventEmitter from './components/eventEmitter';
+import PubSubToPostConnector from './components/connectors/pubSubToPostConnector';
+import './styles.css';
 
-const eventEmitterTopics = ["ON_CHILD_ACTION"];
+const eventEmitterTopics = ['ON_CHILD_ACTION'];
 
 export default function App() {
   const windowRef = useRef<Window>();
@@ -11,8 +11,8 @@ export default function App() {
 
   const createWindow = useCallback(() => {
     const newWindowRef = window.open(
-      "https://csb-hk499z.netlify.app/?ttt=true",
-      "_blank"
+      process.env.REACT_APP_NEW_WINDOW_REF,
+      '_blank'
     );
     if (newWindowRef) {
       windowRef.current = newWindowRef;
@@ -25,12 +25,12 @@ export default function App() {
       {configured && windowRef.current && (
         <PubSubToPostConnector
           windowRef={windowRef.current}
-          senderId={"HOST"}
-          topics={["DO_CHILD_ACTION"]}
+          senderId={'HOST'}
+          topics={['DO_CHILD_ACTION']}
         />
       )}
       <EventEmitter
-        actionToSend={"DO_CHILD_ACTION"}
+        actionToSend={'DO_CHILD_ACTION'}
         topics={eventEmitterTopics}
       />
       <br />

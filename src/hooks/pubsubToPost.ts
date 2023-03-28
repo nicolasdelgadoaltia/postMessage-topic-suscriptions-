@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import usePubSub from "../libs/common-lib/hooks/usePubSub";
+import { useEffect } from 'react';
+import usePubSub from '../libs/common-lib/hooks/usePubSub';
 
 interface Props {
   topics: string[];
@@ -18,7 +18,7 @@ const usePubSubToPost = ({ topics, windowRef, senderId }: Props) => {
     topic,
     callback: (data: any) => {
       windowRef.postMessage({ topic, data, postMessageType: true, senderId });
-    }
+    },
   }));
 
   const { publish } = usePubSub({ topicSubscriptions });
@@ -30,9 +30,9 @@ const usePubSubToPost = ({ topics, windowRef, senderId }: Props) => {
         publish(topic, data);
       }
     };
-    windowRef.addEventListener("message", eventListenerCallback);
+    windowRef.addEventListener('message', eventListenerCallback);
     return () => {
-      windowRef.removeEventListener("message", eventListenerCallback);
+      windowRef.removeEventListener('message', eventListenerCallback);
     };
   }, [publish, senderId, windowRef]);
 };
